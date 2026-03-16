@@ -1,0 +1,600 @@
+/* ============================================================
+   style.css — To-Do List App
+   Design: Dark Glassmorphism + Mint Accent
+   Font: Syne (headings) + DM Sans (body)
+   Author: Muhammad Yasir
+   ============================================================ */
+
+
+/* ============================================================
+   1. CSS VARIABLES (Color Palette & Spacing)
+   ============================================================ */
+:root {
+  --bg-base:        #0d0f14;        /* Page background */
+  --bg-card:        rgba(255,255,255,0.04); /* Glass card */
+  --bg-input:       rgba(255,255,255,0.06);
+  --border:         rgba(255,255,255,0.08);
+  --border-hover:   rgba(255,255,255,0.18);
+
+  --accent:         #3bffa0;        /* Mint green accent */
+  --accent-dim:     rgba(59,255,160,0.12);
+  --accent-glow:    0 0 24px rgba(59,255,160,0.25);
+
+  --text-primary:   #f0f4f0;
+  --text-secondary: #7e8d85;
+  --text-muted:     #4a5550;
+
+  --danger:         #ff5c5c;
+  --danger-dim:     rgba(255,92,92,0.12);
+  --warning:        #ffc145;
+
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-xl:  32px;
+
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-head:  'Syne', sans-serif;
+  --font-body:  'DM Sans', sans-serif;
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Subtle radial glow in background */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59,255,160,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 90%, rgba(59,160,255,0.05) 0%, transparent 60%);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  outline: none;
+}
+
+input {
+  font-family: var(--font-body);
+  outline: none;
+  border: none;
+}
+
+
+/* ============================================================
+   3. APP WRAPPER (Main Card)
+   ============================================================ */
+.app-wrapper {
+  width: 100%;
+  max-width: 640px;
+  margin: 60px auto 0 auto;
+  padding: 0 16px;
+  animation: fadeSlideIn 0.5s ease both;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   4. HEADER
+   ============================================================ */
+.app-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.app-title {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  color: var(--text-primary);
+
+  /* Mint shimmer on title */
+  background: linear-gradient(120deg, #f0f4f0 30%, var(--accent) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+
+
+/* ============================================================
+   5. STATS BAR
+   ============================================================ */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.stats-bar span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+#done-count {
+  color: var(--accent);
+  border-color: rgba(59,255,160,0.2);
+  background: var(--accent-dim);
+}
+
+#pending-count {
+  color: var(--warning);
+  border-color: rgba(255,193,69,0.2);
+  background: rgba(255,193,69,0.08);
+}
+
+
+/* ============================================================
+   6. INPUT SECTION
+   ============================================================ */
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+/* Task Input Field */
+.task-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.task-input::placeholder {
+  color: var(--text-muted);
+}
+
+.task-input:focus {
+  border-color: var(--accent);
+  background: rgba(59,255,160,0.04);
+  box-shadow: var(--accent-glow);
+}
+
+/* Add Task Button */
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #0d1a12;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 14px 22px;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  background: #5fffb4;
+  transform: translateY(-2px);
+  box-shadow: var(--accent-glow);
+}
+
+.add-btn:active {
+  transform: translateY(0px);
+}
+
+.add-btn i {
+  font-size: 0.85rem;
+}
+
+
+/* ============================================================
+   7. FILTER BAR
+   ============================================================ */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  flex: 1;
+  padding: 9px 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.filter-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+/* Active Filter */
+.filter-btn.active {
+  background: var(--accent-dim);
+  border-color: rgba(59,255,160,0.3);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   8. TASK LIST
+   ============================================================ */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+
+/* ============================================================
+   9. SINGLE TASK ITEM
+   ============================================================ */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  transition: var(--transition);
+
+  /* Entry animation */
+  animation: taskIn 0.3s ease both;
+}
+
+@keyframes taskIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.task-item:hover {
+  border-color: var(--border-hover);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Completed task style */
+.task-item.completed {
+  opacity: 0.55;
+  border-color: rgba(59,255,160,0.1);
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+
+/* --- Checkbox (Custom) --- */
+.task-checkbox {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--border-hover);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  color: transparent;
+  font-size: 11px;
+}
+
+.task-checkbox:hover {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* When task is completed, checkbox turns green */
+.task-item.completed .task-checkbox {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d1a12;
+}
+
+
+/* --- Task Text --- */
+.task-text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* Inline Edit Input */
+.task-edit-input {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.task-edit-input:focus {
+  box-shadow: var(--accent-glow);
+}
+
+
+/* --- Action Buttons (Edit & Delete) --- */
+.task-actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.task-item:hover .task-actions {
+  opacity: 1;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-save {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: var(--transition);
+}
+
+/* Edit Button */
+.btn-edit {
+  background: rgba(255,193,69,0.1);
+  color: var(--warning);
+  border: 1px solid rgba(255,193,69,0.2);
+}
+
+.btn-edit:hover {
+  background: rgba(255,193,69,0.22);
+  transform: scale(1.1);
+}
+
+/* Save Button */
+.btn-save {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid rgba(59,255,160,0.3);
+}
+
+.btn-save:hover {
+  background: rgba(59,255,160,0.2);
+  transform: scale(1.1);
+}
+
+/* Delete Button */
+.btn-delete {
+  background: var(--danger-dim);
+  color: var(--danger);
+  border: 1px solid rgba(255,92,92,0.2);
+}
+
+.btn-delete:hover {
+  background: rgba(255,92,92,0.22);
+  transform: scale(1.1);
+}
+
+
+/* ============================================================
+   10. EMPTY STATE
+   ============================================================ */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-muted);
+}
+
+.empty-state i {
+  font-size: 2.8rem;
+  margin-bottom: 14px;
+  display: block;
+  color: var(--text-muted);
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+}
+
+/* Utility class to hide elements */
+.hidden {
+  display: none !important;
+}
+
+
+/* ============================================================
+   11. BOTTOM ACTIONS (Clear Completed)
+   ============================================================ */
+.bottom-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+
+.clear-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--danger-dim);
+  color: var(--danger);
+  border: 1px solid rgba(255,92,92,0.2);
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.clear-btn:hover {
+  background: rgba(255,92,92,0.22);
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   12. FOOTER
+   ============================================================ */
+.app-footer {
+  width: 100%;
+  padding: 32px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+/* Social Icons Row */
+.social-links {
+  display: flex;
+  gap: 14px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.social-icon:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+  transform: translateY(-3px);
+  box-shadow: var(--accent-glow);
+}
+
+/* Footer Credit Text */
+.footer-credit {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+.footer-name {
+  color: var(--accent);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.footer-name:hover {
+  text-shadow: 0 0 12px rgba(59,255,160,0.4);
+}
+
+
+/* ============================================================
+   13. SCROLLBAR (Custom)
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-hover);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+
+/* ============================================================
+   14. RESPONSIVE — Mobile
+   ============================================================ */
+@media (max-width: 520px) {
+
+  .app-wrapper {
+    margin-top: 36px;
+  }
+
+  .input-section {
+    flex-direction: column;
+  }
+
+  .add-btn {
+    justify-content: center;
+  }
+
+  .task-actions {
+    opacity: 1; /* Always show on mobile */
+  }
+
+  .stats-bar {
+    gap: 8px;
+  }
+}
