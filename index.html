@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List App</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for Icons (Edit, Delete, Social Icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <!-- ========== MAIN WRAPPER ========== -->
+    <div class="app-wrapper">
+
+      <!-- ========== HEADER ========== -->
+      <header class="app-header">
+        <h1 class="app-title">My Tasks</h1>
+        <p class="app-subtitle">Stay focused. Get things done.</p>
+      </header>
+
+      <!-- ========== STATS BAR (filled by JS) ========== -->
+      <div class="stats-bar">
+        <span id="total-count">0 Total</span>
+        <span id="done-count">0 Done</span>
+        <span id="pending-count">0 Pending</span>
+      </div>
+
+      <!-- ========== INPUT SECTION ========== -->
+      <div class="input-section">
+
+        <!-- Task Input Field -->
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          placeholder="Add a new task..."
+          maxlength="120"
+        />
+
+        <!-- Add Task Button -->
+        <button id="add-btn" class="add-btn">
+          <i class="fa fa-plus"></i>
+          <span>Add Task</span>
+        </button>
+
+      </div>
+
+      <!-- ========== FILTER BUTTONS ========== -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="pending">Pending</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+      <!-- ========== TASK LIST CONTAINER ========== -->
+      <!-- JavaScript will dynamically render tasks inside this ul -->
+      <ul id="task-list" class="task-list">
+        <!-- Tasks are injected here by script.js -->
+      </ul>
+
+      <!-- ========== EMPTY STATE MESSAGE ========== -->
+      <!-- Shown by JS when no tasks exist -->
+      <div id="empty-state" class="empty-state hidden">
+        <i class="fa fa-clipboard-list"></i>
+        <p>No tasks yet. Add one above!</p>
+      </div>
+
+      <!-- ========== CLEAR COMPLETED BUTTON ========== -->
+      <div class="bottom-actions">
+        <button id="clear-completed-btn" class="clear-btn">
+          <i class="fa fa-trash"></i> Clear Completed
+        </button>
+      </div>
+
+    </div>
+    <!-- END app-wrapper -->
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="app-footer">
+
+      <!-- Social Media Links -->
+      <div class="social-links">
+
+        <a href="#" target="_blank" title="GitHub" class="social-icon">
+          <i class="fab fa-github"></i>
+        </a>
+
+        <a href="#" target="_blank" title="LinkedIn" class="social-icon">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a href="#" target="_blank" title="YouTube" class="social-icon">
+          <i class="fab fa-youtube"></i>
+        </a>
+
+        <a href="#" target="_blank" title="Medium" class="social-icon">
+          <i class="fab fa-medium"></i>
+        </a>
+
+        <a href="#" target="_blank" title="Linktree" class="social-icon">
+          <!-- Linktree has no official FA icon, using a tree icon instead -->
+          <i class="fas fa-tree"></i>
+        </a>
+
+      </div>
+
+      <!-- Credit Line -->
+      <p class="footer-credit">
+        Designed & Developed by
+        <a href="#" target="_blank" class="footer-name">Muhammad Yasir</a>
+      </p>
+
+    </footer>
+
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+
+  </body>
+</html>
