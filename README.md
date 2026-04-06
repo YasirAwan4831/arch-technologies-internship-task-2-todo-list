@@ -108,6 +108,31 @@ This project intentionally uses **no frameworks or libraries** (zero dependencie
 </div>
 
 ---
+## 🔗 Project Explanation
+
+🌐 **Live Demo:**
+https://yasirawan4831.github.io/arch-technologies-internship-task-2-todo-list/
+
+💻 **GitHub Repository:**
+https://github.com/YasirAwan4831/arch-technologies-internship-task-2-todo-list
+
+▶️ **YouTube Video:**
+https://youtube.com/shorts/L89bDqXP0fE?si=OBoaj3TpCnw6rVNb
+
+💼 **LinkedIn Post:**
+https://www.linkedin.com/posts/yasirawan4831_javascript-webdevelopment-todoapp-ugcPost-7446944923666399273-D7Uf
+
+✍️ **Medium Post:**
+https://medium.com/@YasirAwan4831/building-a-simple-to-do-list-app-with-javascript-1974d4ad8095
+
+📰 **Substack Article:**
+https://open.substack.com/pub/yasirwaninfo/p/building-a-simple-to-do-list-app
+
+🧑‍💻 **Dev/Hashnode Article:**
+https://developerhub-coraporation-internship.hashnode.dev/building-a-simple-to-do-list-app-with-javascript
+
+
+---
 
 ## 🖼️ Screenshots
 
